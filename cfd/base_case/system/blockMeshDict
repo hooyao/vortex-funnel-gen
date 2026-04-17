@@ -1,0 +1,63 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// Working in millimetres — consistent with STL coordinates.
+// Phase 2 will switch to metres for CFD; mesh validation is unit-agnostic.
+convertToMeters 0.001;
+
+vertices
+(
+    ( -90  -90  -10)   // 0
+    (  90  -90  -10)   // 1
+    (  90   90  -10)   // 2
+    ( -90   90  -10)   // 3
+    ( -90  -90  140)   // 4
+    (  90  -90  140)   // 5
+    (  90   90  140)   // 6
+    ( -90   90  140)   // 7
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (30 30 24) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    top
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+    bottom
+    {
+        type patch;
+        faces
+        (
+            (0 1 2 3)
+        );
+    }
+    sides
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+            (1 2 6 5)
+            (0 1 5 4)
+            (3 7 6 2)
+        );
+    }
+);

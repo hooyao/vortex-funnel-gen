@@ -2,3 +2,6 @@ cadquery>=2.4
 numpy>=1.24
 scipy>=1.10
 pyyaml>=6.0
+scikit-optimize>=0.10
+pyvista>=0.40
+numpy-stl>=3.0
